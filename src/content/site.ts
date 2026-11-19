@@ -51,7 +51,7 @@ export const site = {
     // e.g. 'https://shanibar1.github.io/ravit-hilman-website/'
     url: 'https://shanibar1.github.io/ravit-hilman-website/',
     ogImage: 'images/og-image.jpg',
-    themeColor: '#5F6B4A',
+    themeColor: '#6E6A47',
   },
 
   // ── Navigation (anchors to sections on the single page) ───────────────────
