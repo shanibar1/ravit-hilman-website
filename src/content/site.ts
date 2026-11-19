@@ -54,7 +54,7 @@ export const site = {
     lang: 'he',
     locale: 'he_IL',
     // Public URL (canonical + Open Graph).
-    url: 'https://ravithilman.co.il/',
+    url: 'https://shanibar1.github.io/ravit-hilman-website/',
     ogImage: 'images/og-image.jpg',
     themeColor: '#6E6A47',
   },
