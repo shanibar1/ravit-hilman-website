@@ -15,7 +15,6 @@
     "astro": "4.16.18"
   },
   "devDependencies": {
-    "@fontsource/frank-ruhl-libre": "5.1.0",
-    "@fontsource/heebo": "5.1.1"
+    "@fontsource/frank-ruhl-libre": "5.1.0"
   }
 }
