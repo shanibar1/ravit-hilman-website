@@ -53,8 +53,8 @@ export const site = {
       'רווית הילמן — מטפלת רגשית ובאמנות בחיפה. ליווי רגשי המשלב שיחה ויצירה למתבגרים, מבוגרים והורים, במרחב מכבד ונטול שיפוטיות. לתיאום פגישת היכרות.',
     lang: 'he',
     locale: 'he_IL',
-    // Set to the final public URL before release (canonical + Open Graph).
-    url: 'https://shanibar1.github.io/ravit-hilman-website/',
+    // Public URL (canonical + Open Graph).
+    url: 'https://ravithilman.co.il/',
     ogImage: 'images/og-image.jpg',
     themeColor: '#6E6A47',
   },

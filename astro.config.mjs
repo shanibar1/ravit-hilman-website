@@ -1,12 +1,11 @@
 import { defineConfig } from 'astro/config';
 
-// GitHub Pages project-site configuration.
-// The site is served from a sub-path (the repository name), so `base` must be set
-// for every asset/link to resolve correctly once published.
-// If a custom domain is later used, set `site` to it and `base` to '/'.
+// Served from the custom apex domain ravithilman.co.il at the root, so `base`
+// is '/'. (For the bare github.io project URL this would be `site:
+// 'https://shanibar1.github.io'` + `base: '/ravit-hilman-website'`.)
 export default defineConfig({
-  site: 'https://shanibar1.github.io',
-  base: '/ravit-hilman-website',
+  site: 'https://ravithilman.co.il',
+  base: '/',
   trailingSlash: 'ignore',
   compressHTML: true,
   build: {
