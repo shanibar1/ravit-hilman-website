@@ -1,0 +1,169 @@
+---
+import { site } from '../content/site';
+---
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-name">{site.name}</span>
+      <span class="brand-role">{site.role}</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="פתיחת תפריט"
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav id="nav-menu" class="nav-menu" aria-label="ניווט ראשי">
+      <ul>
+        {site.nav.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--ivory) 88%, transparent);
+    backdrop-filter: saturate(150%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4.6rem;
+  }
+  .brand { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--step-1);
+    color: var(--ink);
+  }
+  .brand-role {
+    font-size: var(--step--1);
+    color: var(--olive-deep);
+    font-weight: 500;
+  }
+
+  .nav-menu ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 0.2rem + 1.4vw, 1.9rem);
+  }
+  .nav-menu a {
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: 0.5rem 0.2rem;
+    position: relative;
+    transition: color var(--transition);
+  }
+  .nav-menu a::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0.1rem;
+    height: 2px;
+    background: var(--olive);
+    transform: scaleX(0);
+    transform-origin: inline-end;
+    transition: transform 260ms ease;
+  }
+  .nav-menu a:hover { color: var(--olive-deep); }
+  .nav-menu a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .nav-toggle-bar {
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    margin-inline: auto;
+    transition: transform 300ms ease, opacity 200ms ease;
+  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 760px) {
+    .nav-toggle { display: flex; }
+    .nav-menu {
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      background: var(--ivory-soft);
+      border-bottom: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 360ms ease;
+    }
+    .nav-menu.is-open { max-height: 24rem; }
+    .nav-menu ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem var(--gutter) 1.2rem;
+    }
+    .nav-menu li { border-bottom: 1px solid var(--line); }
+    .nav-menu li:last-child { border-bottom: 0; }
+    .nav-menu a {
+      display: block;
+      padding: 0.95rem 0.2rem;
+      font-size: var(--step-0);
+    }
+    .nav-menu a::after { display: none; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    const close = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'פתיחת תפריט');
+      menu.classList.remove('is-open');
+    };
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      if (open) {
+        close();
+      } else {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'סגירת תפריט');
+        menu.classList.add('is-open');
+      }
+    });
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+  }
+</script>

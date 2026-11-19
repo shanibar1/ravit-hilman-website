@@ -1,0 +1,78 @@
+---
+import { site } from '../content/site';
+const { process } = site;
+---
+
+<section id="process" class="process section" aria-labelledby="process-title">
+  <div class="wrap process-grid">
+    <div class="process-head reveal">
+      <span class="eyebrow">איך נראה התהליך</span>
+      <h2 id="process-title" class="section-heading">{process.heading}</h2>
+      <p class="section-lead">{process.lead}</p>
+      <p class="process-note">{process.note}</p>
+    </div>
+
+    <ol class="process-steps">
+      {process.steps.map((s, i) => (
+        <li class="process-step reveal" style={`transition-delay:${i * 100}ms`}>
+          <span class="process-num" aria-hidden="true">{i + 1}</span>
+          <div class="process-step-body">
+            <h3 class="process-step-title">{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process { background: var(--clay); }
+  .process-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 1rem + 5vw, 5rem);
+    align-items: start;
+  }
+  .process-head { position: sticky; top: 6rem; }
+  .process-note {
+    margin-top: 1.4rem;
+    font-size: var(--step--1);
+    color: var(--ink-mute);
+    background: var(--ivory-soft);
+    border-inline-start: 3px solid var(--olive);
+    padding: 0.9rem 1.1rem;
+    border-radius: 10px;
+  }
+
+  .process-steps { display: grid; gap: 1rem; counter-reset: step; }
+  .process-step {
+    display: flex;
+    gap: 1.3rem;
+    align-items: flex-start;
+    background: var(--ivory-soft);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.4rem, 1rem + 1.4vw, 2rem);
+    box-shadow: var(--shadow-soft);
+  }
+  .process-num {
+    flex: 0 0 auto;
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--olive);
+    color: var(--ivory-soft);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 700;
+  }
+  .process-step-title { font-size: var(--step-1); margin-bottom: 0.35rem; }
+  .process-step-body p { color: var(--ink-soft); }
+
+  @media (max-width: 820px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .process-head { position: static; }
+  }
+</style>

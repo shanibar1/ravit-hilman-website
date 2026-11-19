@@ -1,0 +1,83 @@
+---
+import { site } from '../content/site';
+const { audience } = site;
+---
+
+<section id="audience" class="audience section" aria-labelledby="audience-title">
+  <div class="wrap">
+    <div class="audience-head reveal">
+      <span class="eyebrow">למי הטיפול מתאים</span>
+      <h2 id="audience-title" class="section-heading">{audience.heading}</h2>
+      <p class="section-lead">{audience.lead}</p>
+    </div>
+
+    <ul class="audience-groups">
+      {audience.groups.map((g, i) => (
+        <li class="audience-card reveal" style={`transition-delay:${i * 90}ms`}>
+          <span class="audience-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="audience-card-title">{g.title}</h3>
+          <p class="audience-card-body">{g.body}</p>
+        </li>
+      ))}
+    </ul>
+
+    <div class="audience-areas reveal">
+      <h3 class="audience-areas-title">{audience.areasHeading}</h3>
+      <ul class="area-tags">
+        {audience.areas.map((a) => <li class="area-tag">{a}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience-head { max-width: 52ch; margin-bottom: clamp(2rem, 1rem + 3vw, 3.5rem); }
+
+  .audience-groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 0.4rem + 1.6vw, 1.8rem);
+  }
+  .audience-card {
+    background: var(--ivory-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.4rem, 1rem + 1.5vw, 2.2rem);
+    transition: transform 300ms ease, box-shadow var(--transition),
+                opacity 760ms ease;
+  }
+  .audience-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+  .audience-index {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    color: var(--olive);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .audience-card-title { font-size: var(--step-1); margin-bottom: 0.5rem; }
+  .audience-card-body { color: var(--ink-soft); font-size: var(--step-0); }
+
+  .audience-areas {
+    margin-top: clamp(2.2rem, 1.4rem + 2vw, 3.4rem);
+    padding-top: clamp(2rem, 1.4rem + 1.5vw, 3rem);
+    border-top: 1px solid var(--line);
+  }
+  .audience-areas-title {
+    font-size: var(--step-1);
+    margin-bottom: 1.1rem;
+    color: var(--ink);
+  }
+  .area-tags { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+  .area-tag {
+    background: var(--olive-tint);
+    color: var(--olive-deep);
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    font-size: var(--step--1);
+    font-weight: 500;
+  }
+
+  @media (max-width: 820px) {
+    .audience-groups { grid-template-columns: 1fr; }
+  }
+</style>

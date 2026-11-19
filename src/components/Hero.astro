@@ -1,0 +1,89 @@
+---
+import { site } from '../content/site';
+import { asset } from '../lib/asset';
+const { hero } = site;
+const lines = hero.headline.split('\n');
+---
+
+<section id="top" class="hero section" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1 id="hero-title" class="hero-title">
+        {lines.map((line) => <span class="hero-line">{line}</span>)}
+      </h1>
+      <p class="hero-intro">{hero.intro}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={hero.ctaHref}>{hero.ctaLabel}</a>
+      </div>
+    </div>
+
+    <figure class="hero-figure reveal">
+      <img
+        src={asset(hero.image.src)}
+        alt={hero.image.alt}
+        width="1000"
+        height="1250"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <span class="hero-figure-frame" aria-hidden="true"></span>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: clamp(2.5rem, 1.5rem + 4vw, 5rem); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: clamp(2rem, 1rem + 5vw, 5rem);
+  }
+  .hero-title {
+    font-size: var(--step-4);
+    font-weight: 700;
+    margin: 1.2rem 0 1.5rem;
+  }
+  .hero-line { display: block; }
+  .hero-line:nth-child(2) { color: var(--olive-deep); }
+  .hero-intro {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    max-width: 44ch;
+    line-height: 1.7;
+  }
+  .hero-actions { margin-top: 2rem; }
+
+  .hero-figure {
+    position: relative;
+    margin: 0;
+  }
+  .hero-figure img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 2;
+  }
+  .hero-figure-frame {
+    position: absolute;
+    inset-block: 1.6rem -1.6rem;
+    inset-inline-start: -1.6rem;
+    inset-inline-end: 1.6rem;
+    border: 1.5px solid var(--olive);
+    border-radius: var(--radius-lg);
+    z-index: 1;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-figure { order: -1; max-width: 460px; margin-inline: auto; }
+    /* Decorative offset frame is a desktop flourish; drop it on mobile to
+       avoid any poke past the viewport edge. */
+    .hero-figure-frame { display: none; }
+    .hero-title { margin-top: 0.8rem; }
+  }
+</style>

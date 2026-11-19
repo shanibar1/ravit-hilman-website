@@ -1,0 +1,52 @@
+---
+import { site } from '../content/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">{site.name}</span>
+      <span class="footer-role">{site.role} · {site.footer.tagline}</span>
+    </div>
+    <nav class="footer-nav" aria-label="ניווט תחתון">
+      <ul>
+        {site.nav.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </nav>
+    <p class="footer-copy">© {year} {site.name}. כל הזכויות שמורות.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: var(--clay-deep);
+    padding-block: clamp(2.2rem, 1.6rem + 2vw, 3.4rem);
+  }
+  .footer-inner {
+    display: grid;
+    gap: 1.4rem;
+    text-align: start;
+  }
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    color: var(--ivory);
+    display: block;
+  }
+  .footer-role { font-size: var(--step--1); color: #B9B0A2; }
+  .footer-nav ul { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  .footer-nav a {
+    font-size: var(--step--1);
+    color: var(--clay-deep);
+    transition: color var(--transition);
+  }
+  .footer-nav a:hover { color: var(--ivory); }
+  .footer-copy {
+    font-size: var(--step--1);
+    color: #8F877B;
+    border-top: 1px solid rgba(246, 241, 231, 0.12);
+    padding-top: 1.2rem;
+  }
+</style>

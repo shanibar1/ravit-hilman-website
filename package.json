@@ -1,0 +1,21 @@
+{
+  "name": "ravit-hilman-website",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private-practice website for Ravit Hilman (emotional & art therapist), Hebrew / RTL, static Astro site.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "4.16.18"
+  },
+  "devDependencies": {
+    "@fontsource/frank-ruhl-libre": "5.1.0",
+    "@fontsource/heebo": "5.1.1"
+  }
+}
