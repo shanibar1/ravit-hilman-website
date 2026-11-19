@@ -5,6 +5,9 @@ const { contact } = site;
 const waNumber = contact.phoneE164.replace(/[^\d]/g, '');
 const waHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`;
 const telHref = `tel:${contact.phoneE164}`;
+const mapsHref = contact.mapsAddress
+  ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(contact.mapsAddress)}`
+  : '';
 ---
 
 <section id="contact" class="contact section" aria-labelledby="contact-title">
@@ -15,17 +18,40 @@ const telHref = `tel:${contact.phoneE164}`;
         <h2 id="contact-title" class="contact-heading">{contact.heading}</h2>
         <p class="contact-lead">{contact.lead}</p>
         <p class="contact-invitation">{contact.invitation}</p>
-        <p class="contact-location">
-          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7">
-            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" />
-            <circle cx="12" cy="10" r="2.5" />
-          </svg>
-          {contact.locationLabel}
-        </p>
+
+        <dl class="contact-details">
+          <div>
+            <dt>
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7">
+                <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+              מיקום
+            </dt>
+            <dd>
+              {contact.locationLabel}
+              {mapsHref && (
+                <>
+                  {' · '}
+                  <a href={mapsHref} target="_blank" rel="noopener">הוראות הגעה</a>
+                </>
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt>
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7">
+                <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5a2 2 0 0 1 2-2Z" />
+              </svg>
+              טלפון
+            </dt>
+            <dd><a href={telHref} dir="ltr">{contact.phoneDisplay}</a></dd>
+          </div>
+        </dl>
       </div>
 
       <div class="contact-actions">
-        <a class="btn btn-primary contact-btn" href={waHref} target="_blank" rel="noopener">
+        <a class="btn btn-whatsapp contact-btn" href={waHref} target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
             <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.24.68-1.42 1.32-1.95 1.36-.5.04-.97.22-3.27-.68-2.76-1.09-4.5-3.92-4.64-4.1-.14-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.28.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.16.01.38-.06.6.46.24.56.79 1.94.86 2.08.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.3.36-.42.48-.14.14-.29.29-.12.57.16.27.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.44.12.6-.07.17-.19.69-.8.88-1.08.18-.27.37-.22.6-.14.24.08 1.52.72 1.78.85.26.14.43.2.5.31.07.12.07.68-.17 1.36Z" />
           </svg>
@@ -35,11 +61,15 @@ const telHref = `tel:${contact.phoneE164}`;
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7">
             <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5a2 2 0 0 1 2-2Z" />
           </svg>
-          <span dir="ltr">{contact.phoneDisplay}</span>
+          התקשרו אליי
         </a>
         {contact.email && (
           <a class="btn btn-ghost contact-btn" href={`mailto:${contact.email}`}>
-            אימייל
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M4 7l8 6 8-6" />
+            </svg>
+            שליחת אימייל
           </a>
         )}
       </div>
@@ -55,40 +85,43 @@ const telHref = `tel:${contact.phoneE164}`;
     border-radius: var(--radius-lg);
     padding: clamp(2rem, 1.4rem + 4vw, 4.5rem);
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: clamp(2rem, 1rem + 4vw, 4rem);
     align-items: center;
     box-shadow: var(--shadow);
   }
   .contact-card .eyebrow { color: #CFC8A6; }
   .contact-card .eyebrow::before { background: #CFC8A6; }
-  .contact-heading {
-    color: var(--ivory);
-    font-size: var(--step-3);
-    margin: 0.8rem 0 1rem;
-  }
-  .contact-lead {
-    font-size: var(--step-1);
-    color: var(--clay-deep);
-    margin-bottom: 1rem;
-  }
+  .contact-heading { color: var(--ivory); font-size: var(--step-3); margin: 0.8rem 0 1rem; }
+  .contact-lead { font-size: var(--step-1); color: var(--clay-deep); margin-bottom: 0.9rem; }
   .contact-invitation { color: #D6CDBF; max-width: 48ch; }
-  .contact-location {
-    display: inline-flex;
+
+  .contact-details {
+    margin-top: 1.8rem;
+    display: grid;
+    gap: 1.1rem;
+    border-top: 1px solid rgba(246, 241, 231, 0.14);
+    padding-top: 1.6rem;
+  }
+  .contact-details dt {
+    display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1.4rem;
     color: #CFC8A6;
     font-size: var(--step--1);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
   }
-  .contact-location svg { width: 1.2em; height: 1.2em; }
+  .contact-details dt svg { width: 1.1em; height: 1.1em; }
+  .contact-details dd { color: var(--ivory); font-size: var(--step-0); }
+  .contact-details dd a { text-decoration: underline; text-underline-offset: 3px; }
+  .contact-details dd a:hover { color: #CFC8A6; }
 
   .contact-actions { display: grid; gap: 0.9rem; align-content: center; }
   .contact-btn { width: 100%; }
-  .contact-card .btn-ghost {
-    color: var(--ivory);
-    border-color: rgba(246, 241, 231, 0.35);
-  }
+  .btn-whatsapp { background: var(--olive); color: var(--ivory-soft); }
+  .btn-whatsapp:hover { background: var(--olive-deep); }
+  .contact-card .btn-ghost { color: var(--ivory); border-color: rgba(246, 241, 231, 0.35); }
   .contact-card .btn-ghost:hover {
     border-color: var(--ivory);
     color: var(--ivory);

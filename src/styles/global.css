@@ -177,18 +177,23 @@ ul { list-style: none; padding: 0; }
 }
 .btn-ghost:hover { border-color: var(--olive); color: var(--olive-deep); }
 .btn svg { width: 1.15em; height: 1.15em; }
+.btn-sm { min-height: 42px; padding: 0.55rem 1.25rem; font-size: var(--step--1); }
+.btn-lg { min-height: 54px; padding: 1rem 2.2rem; font-size: var(--step-1); }
 
-/* ---- Reveal-on-scroll (motion, opt-out below) --------------------------- */
-.reveal {
+/* ---- Reveal-on-scroll (progressive enhancement) ------------------------- */
+/* Content is visible by default. Only when JS confirms it can animate does it
+   add `.js-anim` to <html> (before paint), which hides elements until revealed.
+   If JS fails or is disabled, everything simply stays visible. */
+.js-anim .reveal {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 760ms ease, transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js-anim .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js-anim .reveal { opacity: 1; transform: none; transition: none; }
   .btn:hover { transform: none; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }

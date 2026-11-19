@@ -1,33 +1,41 @@
 ---
 import { site } from '../content/site';
+const { navCta } = site;
 ---
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#top">
       <span class="brand-name">{site.name}</span>
-      <span class="brand-role">{site.role}</span>
+      <span class="brand-role">{site.role} · {site.tagline}</span>
     </a>
 
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="nav-menu"
-      aria-label="פתיחת תפריט"
-    >
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
+    <div class="nav-end">
+      <nav id="nav-menu" class="nav-menu" aria-label="ניווט ראשי">
+        <ul>
+          {site.nav.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+          <li class="nav-menu-cta">
+            <a class="btn btn-primary btn-sm" href={navCta.href}>{navCta.label}</a>
+          </li>
+        </ul>
+      </nav>
 
-    <nav id="nav-menu" class="nav-menu" aria-label="ניווט ראשי">
-      <ul>
-        {site.nav.map((link) => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
-    </nav>
+      <a class="btn btn-primary btn-sm nav-cta" href={navCta.href}>{navCta.label}</a>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="פתיחת תפריט"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -36,7 +44,7 @@ import { site } from '../content/site';
     position: sticky;
     top: 0;
     z-index: 100;
-    background: color-mix(in srgb, var(--ivory) 88%, transparent);
+    background: color-mix(in srgb, var(--ivory) 90%, transparent);
     backdrop-filter: saturate(150%) blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -47,7 +55,7 @@ import { site } from '../content/site';
     gap: 1rem;
     min-height: 4.6rem;
   }
-  .brand { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand { display: flex; flex-direction: column; line-height: 1.2; }
   .brand-name {
     font-family: var(--font-display);
     font-weight: 700;
@@ -60,20 +68,26 @@ import { site } from '../content/site';
     font-weight: 500;
   }
 
+  .nav-end {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 0.3rem + 1.4vw, 1.8rem);
+  }
+
   .nav-menu ul {
     display: flex;
     align-items: center;
-    gap: clamp(0.8rem, 0.2rem + 1.4vw, 1.9rem);
+    gap: clamp(0.8rem, 0.2rem + 1.4vw, 1.8rem);
   }
   .nav-menu a {
     font-size: var(--step--1);
     font-weight: 500;
     color: var(--ink-soft);
-    padding: 0.5rem 0.2rem;
+    padding: 0.5rem 0.1rem;
     position: relative;
     transition: color var(--transition);
   }
-  .nav-menu a::after {
+  .nav-menu > ul > li > a:not(.btn)::after {
     content: '';
     position: absolute;
     inset-inline: 0;
@@ -84,16 +98,19 @@ import { site } from '../content/site';
     transform-origin: inline-end;
     transition: transform 260ms ease;
   }
-  .nav-menu a:hover { color: var(--olive-deep); }
-  .nav-menu a:hover::after { transform: scaleX(1); transform-origin: inline-start; }
+  .nav-menu a:not(.btn):hover { color: var(--olive-deep); }
+  .nav-menu a:not(.btn):hover::after { transform: scaleX(1); transform-origin: inline-start; }
+  .nav-menu-cta { display: none; }
+
+  .btn-sm { min-height: 42px; padding: 0.55rem 1.25rem; font-size: var(--step--1); }
 
   .nav-toggle {
     display: none;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
     background: transparent;
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -106,16 +123,13 @@ import { site } from '../content/site';
     margin-inline: auto;
     transition: transform 300ms ease, opacity 200ms ease;
   }
-  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(2) { opacity: 0; }
-  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  @media (max-width: 760px) {
+  @media (max-width: 800px) {
     .nav-toggle { display: flex; }
+    .brand-role { display: none; }
     .nav-menu {
       position: absolute;
       inset-inline: 0;
@@ -127,21 +141,19 @@ import { site } from '../content/site';
       overflow: hidden;
       transition: max-height 360ms ease;
     }
-    .nav-menu.is-open { max-height: 24rem; }
-    .nav-menu ul {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-      padding: 0.5rem var(--gutter) 1.2rem;
-    }
+    .nav-menu.is-open { max-height: 26rem; }
+    .nav-menu ul { flex-direction: column; align-items: stretch; gap: 0; padding: 0.4rem var(--gutter) 1.3rem; }
     .nav-menu li { border-bottom: 1px solid var(--line); }
     .nav-menu li:last-child { border-bottom: 0; }
-    .nav-menu a {
-      display: block;
-      padding: 0.95rem 0.2rem;
-      font-size: var(--step-0);
-    }
-    .nav-menu a::after { display: none; }
+    .nav-menu a:not(.btn) { display: block; padding: 0.95rem 0.2rem; font-size: var(--step-0); }
+    .nav-menu a:not(.btn)::after { display: none; }
+    .nav-menu-cta { display: block; padding-top: 1rem; }
+    .nav-menu-cta .btn { width: 100%; }
+  }
+
+  /* Very narrow phones: keep the top-bar CTA compact but visible */
+  @media (max-width: 400px) {
+    .nav-cta { padding-inline: 0.9rem; }
   }
 </style>
 
@@ -165,5 +177,8 @@ import { site } from '../content/site';
       }
     });
     menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
   }
 </script>

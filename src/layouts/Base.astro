@@ -57,6 +57,16 @@ const ogImageUrl = new URL(asset(seo.ogImage), seo.url).toString();
       url: seo.url,
       inLanguage: 'he',
     })} />
+    <!-- Enable scroll-reveal only when JS can animate (before paint, no FOUC).
+         Without JS, or with reduced motion, all content stays visible. -->
+    <script is:inline>
+      try {
+        if ('IntersectionObserver' in window &&
+            !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+          document.documentElement.classList.add('js-anim');
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">דלג לתוכן הראשי</a>

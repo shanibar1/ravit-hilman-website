@@ -12,6 +12,7 @@ const year = new Date().getFullYear();
     <nav class="footer-nav" aria-label="ניווט תחתון">
       <ul>
         {site.nav.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        <li><a href={site.navCta.href}>{site.navCta.label}</a></li>
       </ul>
     </nav>
     <p class="footer-copy">© {year} {site.name}. כל הזכויות שמורות.</p>

@@ -1,17 +1,16 @@
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  SINGLE SOURCE OF TRUTH — edit the site from this one file.
+ *  SINGLE SOURCE OF TRUTH — edit the whole site from this one file.
  * ─────────────────────────────────────────────────────────────────────────
  *  All Hebrew copy, contact details, and image paths live here. Change a value
- *  below and rebuild (`npm run build`) to update the site. No other file needs
- *  to be touched for routine content edits.
+ *  below and rebuild (`npm run build`) to update the site.
  *
- *  ⚠️  PENDING CONFIRMATION — items marked `// CONFIRM:` are based on a single
- *  public directory listing (alhasapa.co.il) and have NOT been independently
- *  verified. Confirm each with Ravit before the site is made public.
+ *  ⚠️  PENDING CONFIRMATION — items marked `// CONFIRM:` come from a single
+ *  public directory listing (alhasapa.co.il) and are NOT independently verified.
+ *  Confirm each with Ravit before the site is made public.
  *
- *  Image paths are written WITHOUT the GitHub Pages base prefix. Use the
- *  `asset()` helper in components so paths resolve both locally and on Pages.
+ *  Image paths are written WITHOUT the GitHub Pages base prefix. The `asset()`
+ *  helper in components resolves them for both local dev and Pages.
  */
 
 export interface NavLink {
@@ -40,15 +39,14 @@ export const site = {
   // ── Identity & SEO ──────────────────────────────────────────────────────
   name: 'רווית הילמן',
   role: 'מטפלת רגשית ובאמנות',
-  // Used in <title>, meta description and social preview.
+  tagline: 'חיפה',
   seo: {
     title: 'רווית הילמן | מטפלת רגשית ובאמנות בחיפה',
     description:
-      'רווית הילמן — מטפלת רגשית ובאמנות בחיפה. מרחב טיפולי רגוע ומכבד למתבגרים, מבוגרים והורים, המשלב שיחה ויצירה. לתיאום פגישת היכרות.',
+      'רווית הילמן — מטפלת רגשית ובאמנות בחיפה. ליווי רגשי המשלב שיחה ויצירה למתבגרים, מבוגרים והורים, במרחב מכבד ונטול שיפוטיות. לתיאום פגישת היכרות.',
     lang: 'he',
     locale: 'he_IL',
-    // Set this to the final public URL before release (used for canonical + OG).
-    // e.g. 'https://shanibar1.github.io/ravit-hilman-website/'
+    // Set to the final public URL before release (canonical + Open Graph).
     url: 'https://shanibar1.github.io/ravit-hilman-website/',
     ogImage: 'images/og-image.jpg',
     themeColor: '#6E6A47',
@@ -56,59 +54,74 @@ export const site = {
 
   // ── Navigation (anchors to sections on the single page) ───────────────────
   nav: [
-    { label: 'פתיחה', href: '#top' },
     { label: 'נעים להכיר', href: '#about' },
-    { label: 'למי הטיפול מתאים', href: '#audience' },
-    { label: 'איך נראה התהליך', href: '#process' },
+    { label: 'למי מתאים', href: '#audience' },
+    { label: 'איך מתחילים', href: '#process' },
     { label: 'שאלות נפוצות', href: '#faq' },
-    { label: 'יצירת קשר', href: '#contact' },
   ] as const satisfies readonly NavLink[],
+  navCta: { label: 'ליצירת קשר', href: '#contact' } as const,
 
   // ── Hero (פתיחה) ──────────────────────────────────────────────────────────
   hero: {
-    eyebrow: 'מטפלת רגשית ובאמנות · חיפה',
-    // Expressive, editorial headline.
-    headline: 'מרחב רגוע\nלהתבונן, להרגיש\nולצמוח',
+    eyebrow: 'מטפלת רגשית ובאמנות',
+    // Natural, specific headline. The second line carries the accent colour.
+    headlineTop: 'ליווי רגשי',
+    headlineAccent: 'דרך שיחה ויצירה',
     intro:
-      'אני רווית הילמן, מטפלת רגשית ובאמנות. אני מלווה מתבגרים, מבוגרים והורים במרחב מכבד ונטול שיפוטיות, שבו אפשר לפגוש את הרגשות דרך שיחה ויצירה — בקצב אישי, ובלי צורך להרשים אף אחד.',
+      'אני רווית הילמן, מטפלת רגשית ובאמנות בחיפה. אני מלווה מתבגרים, מבוגרים והורים — במרחב מכבד ונטול שיפוטיות, שבו אפשר לפגוש את מה שעולה, בקצב אישי ובלי צורך להרשים אף אחד.',
+    // Short, scannable facts shown under the intro.
+    meta: [
+      'קליניקה בחיפה',
+      'מתבגרים · מבוגרים · הורים',
+      'פגישות פנים אל פנים',
+    ] as readonly string[],
     ctaLabel: 'ליצירת קשר',
     ctaHref: '#contact',
     image: {
-      // Replace with an approved portrait of Ravit when available.
+      // Replace with an approved portrait of Ravit when available (keep ~4:5).
       src: 'images/hero.jpg',
-      alt: 'אור יום רך נופל על קיר בעל מרקם, יוצר אווירה שקטה ומזמינה',
-      credit: 'Unsplash',
+      alt: 'צללי עלים רכים על קיר בהיר באור יום — אווירה שקטה ומזמינה',
+      credit: 'Pexels',
     } as SiteImage,
   },
 
-  // ── About (נעים להכיר) ────────────────────────────────────────────────────
+  // ── About — מי זו רווית? (נעים להכיר) ──────────────────────────────────────
   about: {
     heading: 'נעים להכיר',
-    lead: 'הדרך שלי אל הטיפול התחילה מתוך סקרנות עמוקה לנפש האדם ולכוח הריפוי שיש במפגש אנושי ויצירתי.',
+    lead: 'הדרך שלי אל הטיפול התחילה מתוך סקרנות עמוקה לנפש האדם, ולכוח הריפוי שיש במפגש אנושי ויצירתי.',
     paragraphs: [
-      'אני בוגרת תואר שני בטיפול באמצעות אומנות מאוניברסיטת חיפה, והוכשרתי גם בטיפול בהתמכרויות במרכז הישראלי להתמכרויות. לאורך השנים צברתי ניסיון בעבודה בתחום בריאות הנפש, עם בני נוער בסיכון ובהדרכת הורים.',
-      'כיום אני עובדת גם כמטפלת רגשית במסגרת משרד החינוך, ומלווה בני נוער המתמודדים עם קשיים רגשיים בתוך בית הספר. בעבודתי אני משלבת שיחה עם כלים טיפוליים מגוונים, ביניהם כלים מתוך גישת ה־DBT, בהתאמה אישית לכל מטופל ומטופלת.',
-      'אני מאמינה שטיפול טוב מתחיל ביחס — במרחב בטוח ונטול שיפוטיות, שבו נבנית אמון בהדרגה, ושבו לכל אחד ואחת מותר להגיע בדיוק כפי שהם.',
+      'לאורך השנים צברתי ניסיון בעבודה בתחום בריאות הנפש, עם בני נוער בסיכון ובהדרכת הורים. כיום אני עובדת גם כמטפלת רגשית במסגרת משרד החינוך, ומלווה בני נוער המתמודדים עם קשיים רגשיים בתוך בית הספר.',
+      'בטיפול אני משלבת שיחה עם עבודה יצירתית, ומתאימה את הכלים — ביניהם כלים מגישת ה־DBT — לכל אדם ולקצב שלו. אני מאמינה שטיפול טוב מתחיל ביחס: במרחב בטוח שבו נבנה אמון בהדרגה, ושבו מותר להגיע בדיוק כפי שאתם.',
     ],
+    // Verified training & experience — shown as a clean list, not badges.
+    credentialsHeading: 'הכשרה וניסיון',
+    credentials: [
+      'תואר שני בטיפול באמצעות אומנות — אוניברסיטת חיפה',
+      'הכשרה בטיפול בהתמכרויות — המרכז הישראלי להתמכרויות',
+      'מטפלת רגשית במסגרת משרד החינוך',
+      'שילוב כלים מגישת ה־DBT',
+    ] as readonly string[],
     image: {
+      // Placeholder portrait slot — replace with an approved photo of Ravit.
       src: 'images/about.jpg',
-      alt: 'פינה שקטה בחדר עם אור טבעי רך',
-      credit: 'Unsplash',
+      alt: 'אור יום רך מבעד לווילון על קיר בהיר — פינה שקטה ונעימה',
+      credit: 'Pexels',
     } as SiteImage,
+    portraitNote: 'תמונה להמחשה — תוחלף בתמונה מאושרת של רווית.',
   },
 
-  // ── Audience (למי הטיפול מתאים) ──────────────────────────────────────────
+  // ── Audience — האם הטיפול מתאים לי? (למי הטיפול מתאים) ─────────────────────
   audience: {
     heading: 'למי הטיפול מתאים',
-    lead: 'אני מלווה אנשים בשלבים ובגילאים שונים — מתבגרים מגיל 12, מבוגרים, והורים המבקשים ליווי.',
+    lead: 'אני מלווה אנשים בשלבים ובגילים שונים. אלה הקהלים שאיתם אני עובדת:',
     groups: [
       {
         title: 'מתבגרים ובני נוער',
-        body: 'ליווי רגשי לבני נוער מגיל 12 ומעלה, המתמודדים עם קשיים רגשיים, חברתיים או משפחתיים.',
+        body: 'ליווי רגשי מגיל 12 ומעלה — בהתמודדות עם קשיים רגשיים, חברתיים או משפחתיים, ובתקופות של לחץ ובלבול.',
       },
       {
         title: 'מבוגרים',
-        body: 'מרחב אישי למבוגרים המבקשים להתבונן פנימה, להתמודד עם משברים ולהכיר את עצמם מחדש.',
+        body: 'מרחב אישי להתבונן פנימה, להתמודד עם משברים ותקופות מעבר, ולהכיר את עצמכם מחדש.',
       },
       {
         title: 'הורים',
@@ -127,25 +140,25 @@ export const site = {
     ] as readonly string[],
   },
 
-  // ── Process (איך נראה התהליך) ─────────────────────────────────────────────
+  // ── Process — איך מתחילים? (איך נראה התהליך) ──────────────────────────────
   process: {
-    heading: 'איך נראה התהליך',
-    lead: 'הדרך מתחילה בפנייה קטנה — ומשם אנחנו מתקדמות יחד, בקצב שמתאים לך.',
+    heading: 'איך מתחילים',
+    lead: 'הדרך מתחילה בפנייה קטנה — ומשם מתקדמים יחד, בקצב שמתאים לכם.',
     steps: [
       {
         title: 'פנייה ראשונית',
-        body: 'את/ה פונים אליי בטלפון או בוואטסאפ, ואנחנו קובעים זמן לשיחה קצרה להיכרות.',
+        body: 'פונים אליי בוואטסאפ או בטלפון, ומתאמים זמן לשיחה קצרה להיכרות — ללא התחייבות.',
       },
       {
         title: 'פגישת היכרות',
-        body: 'בפגישה הראשונה נכיר, נדבר על מה שמביא אותך, ונראה יחד אם יש התאמה. אין צורך להגיע מוכנים — מספיק לבוא כפי שאתם.',
+        body: 'בפגישה הראשונה נכיר, נדבר על מה שמביא אתכם, ונראה יחד אם יש התאמה. אין צורך להגיע מוכנים — מספיק לבוא כפי שאתם.',
       },
       {
         title: 'תהליך משותף',
-        body: 'אם נחליט להמשיך, נבנה יחד תהליך טיפולי בקצב אישי, המשלב שיחה ויצירה בהתאם לצרכים שלך.',
+        body: 'אם נחליט להמשיך, נבנה יחד תהליך בקצב אישי, שמשלב שיחה ויצירה בהתאם לצרכים שלכם.',
       },
     ] as readonly ListItem[],
-    note: 'הטיפול מתקיים בחיפה. פרטים נוספים על מתכונת ומועדי הפגישות נשמח לתאם בשיחה.', // CONFIRM: session format/length
+    note: 'הפגישות מתקיימות פנים אל פנים בקליניקה בחיפה, בעברית.', // CONFIRM: in-person only / no online; session length & pricing not public
   },
 
   // ── FAQ (שאלות נפוצות) — only verified answers ────────────────────────────
@@ -153,17 +166,19 @@ export const site = {
     heading: 'שאלות נפוצות',
     items: [
       {
-        question: 'איפה מתקיים הטיפול?',
-        answer: 'הקליניקה שלי נמצאת בחיפה, ואני מלווה מטופלים מחיפה, מאזור הצפון ומהקריות.',
+        question: 'איפה מתקיימות הפגישות?',
+        answer:
+          'בקליניקה בחיפה, פנים אל פנים. אני מלווה מטופלים מחיפה, מאזור הצפון ומהקריות.',
       },
       {
         question: 'עם מי את עובדת?',
-        answer: 'אני עובדת עם מתבגרים מגיל 12 ומעלה, עם מבוגרים, ועם הורים המבקשים ליווי והדרכה.',
+        answer:
+          'עם מתבגרים מגיל 12 ומעלה, עם מבוגרים, ועם הורים המבקשים ליווי והדרכה.',
       },
       {
-        question: 'איך מתחילים?',
+        question: 'איך נראית פגישת ההיכרות?',
         answer:
-          'הדרך הפשוטה ביותר היא לפנות אליי בטלפון או בוואטסאפ. נתאם שיחה קצרה, ומשם נקבע פגישת היכרות ללא התחייבות.',
+          'שיחה פתוחה שבה נכיר ונבין מה מביא אתכם. אין צורך בהכנה מוקדמת, והיא נועדה לבדוק יחד אם יש התאמה — ללא התחייבות להמשך.',
       },
       {
         question: 'באיזו שפה מתקיים הטיפול?',
@@ -172,25 +187,25 @@ export const site = {
     ] as readonly FaqItem[],
   },
 
-  // ── Contact (יצירת קשר) ───────────────────────────────────────────────────
+  // ── Contact — איך יוצרים קשר? (יצירת קשר) ──────────────────────────────────
   contact: {
     heading: 'יצירת קשר',
-    lead: 'מוזמנים לפנות אליי. אני כאן כדי להקשיב, ולראות יחד איך אפשר להתקדם.',
+    lead: 'הצעד הראשון הוא לרוב הקשה ביותר — ואני כאן כדי להקל עליו.',
     invitation:
-      'אפשר להתקשר או לשלוח הודעת וואטסאפ, ואחזור אליכם בהקדם. הצעד הראשון הוא לרוב הקשה ביותר — ואני כאן כדי להקל עליו.',
+      'אפשר לשלוח הודעת וואטסאפ או להתקשר, ואחזור אליכם בהקדם. הפנייה אינה מחייבת דבר.',
 
-    // CONFIRM: phone taken from the alhasapa.co.il listing (spelled there רוית).
-    // Verify the number is correct and that WhatsApp is active on it before release.
+    // CONFIRM: phone from the alhasapa.co.il listing (spelled there רוית).
+    // Verify the number is correct and that WhatsApp is active on it.
     phoneDisplay: '052-829-5533',
     phoneE164: '+972528295533', // used for tel: and wa.me links
-    whatsappMessage: 'היי, אשמח לשמוע פרטים על אפשרות לקבוע פגישת היכרות.',
+    whatsappMessage: 'היי רווית, אשמח לשמוע פרטים על פגישת היכרות.',
 
-    // Optional channels — left empty until confirmed. Fill in to show them.
+    // Optional channels — fill in to show them (empty = hidden).
     email: '', // CONFIRM: no public email found
-    instagram: '', // CONFIRM: none found
-    facebook: '', // CONFIRM: none found
-
-    locationLabel: 'חיפה והסביבה', // CONFIRM: exact clinic address not public
+    // Public clinic street address is unknown; set to a full address to enable
+    // a working directions button. Leaving it empty shows the city only.
+    mapsAddress: '', // CONFIRM: exact clinic address not public (city: חיפה)
+    locationLabel: 'קליניקה בחיפה',
   },
 
   // ── Footer ────────────────────────────────────────────────────────────────
