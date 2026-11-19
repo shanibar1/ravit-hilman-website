@@ -28,6 +28,13 @@ export interface FaqItem {
   readonly answer: string;
 }
 
+export interface Credential {
+  /** Qualification or program name (shown first). */
+  readonly title: string;
+  /** Issuing institution + optional year/context (shown below, muted). */
+  readonly issuer: string;
+}
+
 export interface SiteImage {
   /** Path relative to /public, e.g. "images/hero.jpg". No leading slash, no base. */
   readonly src: string;
@@ -93,21 +100,23 @@ export const site = {
       'לאורך השנים צברתי ניסיון בעבודה בתחום בריאות הנפש, עם בני נוער בסיכון ובהדרכת הורים. כיום אני עובדת גם כמטפלת רגשית במסגרת משרד החינוך, ומלווה בני נוער המתמודדים עם קשיים רגשיים בתוך בית הספר.',
       'בטיפול אני משלבת שיחה עם עבודה יצירתית, ומתאימה את הכלים — ביניהם כלים מגישת ה־DBT — לכל אדם ולקצב שלו. אני מאמינה שטיפול טוב מתחיל ביחס: במרחב בטוח שבו נבנה אמון בהדרגה, ושבו מותר להגיע בדיוק כפי שאתם.',
     ],
-    // Verified training & experience — shown as a clean list, not badges.
-    credentialsHeading: 'הכשרה וניסיון',
+    // Education & professional training — taken from Ravit's certificates.
+    // Qualification/program name first, issuing institution + year below.
+    credentialsHeading: 'השכלה והכשרה מקצועית',
     credentials: [
-      'תואר שני בטיפול באמצעות אומנות — אוניברסיטת חיפה',
-      'הכשרה בטיפול בהתמכרויות — המרכז הישראלי להתמכרויות',
-      'מטפלת רגשית במסגרת משרד החינוך',
-      'שילוב כלים מגישת ה־DBT',
-    ] as readonly string[],
+      {
+        title: 'תואר שני (M.A.) בטיפול באמצעות אמנויות — אמנות חזותית',
+        issuer: 'אוניברסיטת חיפה · 2022, בהצטיינות',
+      },
+      {
+        title: 'הכשרת מטפלים: התמקצעות בטיפול בהפרעות שימוש בקרב בני נוער',
+        issuer: 'קמפוס ICA — המרכז הישראלי להתמכרויות · 2024',
+      },
+    ] as readonly Credential[],
     image: {
-      // Placeholder portrait slot — replace with an approved photo of Ravit.
-      src: 'images/about.jpg',
-      alt: 'אור יום רך מבעד לווילון על קיר בהיר — פינה שקטה ונעימה',
-      credit: 'Pexels',
+      src: 'images/ravit-portrait.jpg',
+      alt: 'רווית הילמן',
     } as SiteImage,
-    portraitNote: 'תמונה להמחשה — תוחלף בתמונה מאושרת של רווית.',
   },
 
   // ── Audience — האם הטיפול מתאים לי? (למי הטיפול מתאים) ─────────────────────
@@ -135,9 +144,12 @@ export const site = {
       'משברי חיים ותקופות מעבר',
       'התמודדות עם טראומה',
       'דימוי עצמי וביטחון',
-      'התמכרויות',
       'ליווי בגיל ההתבגרות',
     ] as readonly string[],
+    // NOTE: "התמכרויות" was removed from the public service list pending Ravit's
+    // confirmation. Her ICA training is specifically in substance-use disorders
+    // among youth (shown under credentials); confirm before listing addiction
+    // treatment as a general service she currently offers.
   },
 
   // ── Process — איך מתחילים? (איך נראה התהליך) ──────────────────────────────
