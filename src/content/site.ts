@@ -85,10 +85,8 @@ export const site = {
     ctaLabel: 'ליצירת קשר',
     ctaHref: '#contact',
     image: {
-      // Replace with an approved portrait of Ravit when available (keep ~4:5).
-      src: 'images/hero.jpg',
-      alt: 'צללי עלים רכים על קיר בהיר באור יום — אווירה שקטה ומזמינה',
-      credit: 'Pexels',
+      src: 'images/hero-session.webp',
+      alt: 'מתבגר מצייר בעיפרון במהלך מפגש ליווי רגשי',
     } as SiteImage,
   },
 
