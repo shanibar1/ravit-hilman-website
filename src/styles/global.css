@@ -20,10 +20,10 @@
   --line:         #D9CEBB;
   --white:        #FFFFFF;
 
-  /* Typography — one family across the whole site. Hierarchy comes from
-     size / weight (400, 500, 700) / spacing, not from a second font. */
-  --font-display: 'Frank Ruhl Libre', Georgia, 'Times New Roman', serif;
-  --font-body:    'Frank Ruhl Libre', Georgia, 'Times New Roman', serif;
+  /* Typography — one modern Hebrew family (Heebo) across the whole site.
+     Hierarchy comes from size / weight (400, 500, 700, 800) / spacing. */
+  --font-display: 'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-body:    'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
 
   --step--1: clamp(0.84rem, 0.80rem + 0.2vw, 0.95rem);
   --step-0:  clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
@@ -71,9 +71,9 @@ img { height: auto; }
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
   color: var(--ink);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.022em;
   text-wrap: balance;
 }
 
