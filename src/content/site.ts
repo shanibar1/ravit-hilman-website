@@ -5,9 +5,7 @@
  *  All Hebrew copy, contact details, and image paths live here. Change a value
  *  below and rebuild (`npm run build`) to update the site.
  *
- *  ⚠️  PENDING CONFIRMATION — items marked `// CONFIRM:` come from a single
- *  public directory listing (alhasapa.co.il) and are NOT independently verified.
- *  Confirm each with Ravit before the site is made public.
+ *  Display name is רוית הילמן (one ו) everywhere.
  *
  *  Image paths are written WITHOUT the GitHub Pages base prefix. The `asset()`
  *  helper in components resolves them for both local dev and Pages.
@@ -44,13 +42,13 @@ export interface SiteImage {
 
 export const site = {
   // ── Identity & SEO ──────────────────────────────────────────────────────
-  name: 'רווית הילמן',
-  role: 'מטפלת רגשית ובאמנות',
+  name: 'רוית הילמן',
+  role: 'מטפלת רגשית באמצעות אומנות',
   tagline: 'חיפה',
   seo: {
-    title: 'רווית הילמן | מטפלת רגשית ובאמנות בחיפה',
+    title: 'רוית הילמן | מטפלת רגשית באמצעות אומנות בחיפה',
     description:
-      'רווית הילמן — מטפלת רגשית ובאמנות בחיפה. ליווי רגשי המשלב שיחה ויצירה למתבגרים, מבוגרים והורים, במרחב מכבד ונטול שיפוטיות. לתיאום פגישת היכרות.',
+      'רוית הילמן — מטפלת רגשית באמצעות אומנות בחיפה. ליווי רגשי המשלב שיחה ויצירה למתבגרים, מבוגרים והורים, במרחב מכבד ונטול שיפוטיות. לתיאום פגישת היכרות.',
     lang: 'he',
     locale: 'he_IL',
     // Public URL (canonical + Open Graph).
@@ -70,12 +68,11 @@ export const site = {
 
   // ── Hero (פתיחה) ──────────────────────────────────────────────────────────
   hero: {
-    eyebrow: 'מטפלת רגשית ובאמנות',
-    // Natural, specific headline. The second line carries the accent colour.
+    eyebrow: 'מטפלת רגשית באמצעות אומנות',
     headlineTop: 'ליווי רגשי',
     headlineAccent: 'דרך שיחה ויצירה',
     intro:
-      'אני רווית הילמן, מטפלת רגשית ובאמנות בחיפה. אני מלווה מתבגרים, מבוגרים והורים — במרחב מכבד ונטול שיפוטיות, שבו אפשר לפגוש את מה שעולה, בקצב אישי ובלי צורך להרשים אף אחד.',
+      'אני רוית הילמן, מטפלת רגשית באמצעות אומנות בחיפה. אני מלווה מתבגרים, מבוגרים והורים — במרחב מכבד ונטול שיפוטיות, שבו אפשר לפגוש את מה שעולה, בקצב אישי ובלי צורך להרשים אף אחד.',
     // Short, scannable facts shown under the intro.
     meta: [
       'קליניקה בחיפה',
@@ -86,20 +83,18 @@ export const site = {
     ctaHref: '#contact',
     image: {
       src: 'images/hero-session.webp',
-      alt: 'מתבגר מצייר בעיפרון במהלך מפגש ליווי רגשי',
+      alt: 'ציור בצבעי מים במהלך מפגש ליווי רגשי',
     } as SiteImage,
   },
 
-  // ── About — מי זו רווית? (נעים להכיר) ──────────────────────────────────────
+  // ── About — מי זו רוית? (נעים להכיר) — Ravit's own wording ─────────────────
   about: {
     heading: 'נעים להכיר',
-    lead: 'הדרך שלי אל הטיפול התחילה מתוך סקרנות עמוקה לנפש האדם, ולכוח הריפוי שיש במפגש אנושי ויצירתי.',
+    lead: 'אני משלבת בעבודתי שיח, עבודה עם חומרים וכלים מעולם ה־DBT, באופן שמתאים לצורך של כל אדם ולקצב האישי שלו.',
     paragraphs: [
-      'לאורך השנים צברתי ניסיון בעבודה בתחום בריאות הנפש, עם בני נוער בסיכון ובהדרכת הורים. כיום אני עובדת גם כמטפלת רגשית במסגרת משרד החינוך, ומלווה בני נוער המתמודדים עם קשיים רגשיים בתוך בית הספר.',
-      'בטיפול אני משלבת שיחה עם עבודה יצירתית, ומתאימה את הכלים — ביניהם כלים מגישת ה־DBT — לכל אדם ולקצב שלו. אני מאמינה שטיפול טוב מתחיל ביחס: במרחב בטוח שבו נבנה אמון בהדרגה, ושבו מותר להגיע בדיוק כפי שאתם.',
+      'אני מאמינה שטיפול מתחיל במרחב בטוח. מרחב שבו נבנה בהדרגה אמון ושאליו מותר להגיע בדיוק כפי שאתם.',
     ],
-    // Education & professional training — taken from Ravit's certificates.
-    // Qualification/program name first, issuing institution + year below.
+    // Education & professional training — from Ravit's certificates.
     credentialsHeading: 'השכלה והכשרה מקצועית',
     credentials: [
       {
@@ -113,18 +108,19 @@ export const site = {
     ] as readonly Credential[],
     image: {
       src: 'images/ravit-portrait.jpg',
-      alt: 'רווית הילמן',
+      alt: 'רוית הילמן',
     } as SiteImage,
   },
 
-  // ── Audience — האם הטיפול מתאים לי? (למי הטיפול מתאים) ─────────────────────
+  // ── Audience — למי הטיפול מתאים? ──────────────────────────────────────────
   audience: {
     heading: 'למי הטיפול מתאים',
     lead: 'אני מלווה אנשים בשלבים ובגילים שונים. אלה הקהלים שאיתם אני עובדת:',
     groups: [
       {
         title: 'מתבגרים ובני נוער',
-        body: 'ליווי רגשי מגיל 12 ומעלה — בהתמודדות עם קשיים רגשיים, חברתיים או משפחתיים, ובתקופות של לחץ ובלבול.',
+        // REVIEW (age range): specific ages intentionally left out until Ravit confirms.
+        body: 'ליווי רגשי למתבגרים ובני נוער — בהתמודדות עם קשיים רגשיים, חברתיים או משפחתיים, ובתקופות של לחץ ובלבול.',
       },
       {
         title: 'מבוגרים',
@@ -132,7 +128,7 @@ export const site = {
       },
       {
         title: 'הורים',
-        body: 'הדרכת הורים וליווי במפגש עם האתגרים של גיל ההתבגרות ושל החיים המשפחתיים.',
+        body: 'הדרכת הורים וליווי במפגש עם האתגרים של גיל ההתבגרות ושל החיים המשפחתיים. הדרכת הורים מתקיימת גם בזום.',
       },
     ] as readonly ListItem[],
     areasHeading: 'תחומים שבהם אני מלווה',
@@ -142,15 +138,13 @@ export const site = {
       'משברי חיים ותקופות מעבר',
       'התמודדות עם טראומה',
       'דימוי עצמי וביטחון',
+      'התמכרויות',
+      'חינוך מיני',
       'ליווי בגיל ההתבגרות',
     ] as readonly string[],
-    // NOTE: "התמכרויות" was removed from the public service list pending Ravit's
-    // confirmation. Her ICA training is specifically in substance-use disorders
-    // among youth (shown under credentials); confirm before listing addiction
-    // treatment as a general service she currently offers.
   },
 
-  // ── Process — איך מתחילים? (איך נראה התהליך) ──────────────────────────────
+  // ── Process — איך מתחילים? ────────────────────────────────────────────────
   process: {
     heading: 'איך מתחילים',
     lead: 'הדרך מתחילה בפנייה קטנה — ומשם מתקדמים יחד, בקצב שמתאים לכם.',
@@ -168,22 +162,28 @@ export const site = {
         body: 'אם נחליט להמשיך, נבנה יחד תהליך בקצב אישי, שמשלב שיחה ויצירה בהתאם לצרכים שלכם.',
       },
     ] as readonly ListItem[],
-    note: 'הפגישות מתקיימות פנים אל פנים בקליניקה בחיפה, בעברית.', // CONFIRM: in-person only / no online; session length & pricing not public
+    note: 'הפגישות מתקיימות פנים אל פנים בקליניקה בחיפה, בעברית. הדרכת הורים מתקיימת גם בזום.', // CONFIRM: in-person only / session length & pricing not public
   },
 
-  // ── FAQ (שאלות נפוצות) — only verified answers ────────────────────────────
+  // ── FAQ (שאלות נפוצות) ────────────────────────────────────────────────────
   faq: {
     heading: 'שאלות נפוצות',
     items: [
       {
         question: 'איפה מתקיימות הפגישות?',
         answer:
-          'בקליניקה בחיפה, פנים אל פנים. אני מלווה מטופלים מחיפה, מאזור הצפון ומהקריות.',
+          'בקליניקה בחיפה, פנים אל פנים. אני מלווה מטופלים מחיפה, מאזור הצפון ומהקריות. הדרכת הורים מתקיימת גם בזום.',
       },
       {
         question: 'עם מי את עובדת?',
         answer:
-          'עם מתבגרים מגיל 12 ומעלה, עם מבוגרים, ועם הורים המבקשים ליווי והדרכה.',
+          'עם מתבגרים, עם מבוגרים, ועם הורים המבקשים ליווי והדרכה.',
+      },
+      {
+        // REVIEW: proposed FAQ about art therapy — awaiting Ravit's approval.
+        question: 'האם צריך לדעת לצייר כדי להגיע לטיפול באומנות?',
+        answer:
+          'אין צורך בניסיון קודם בציור או ביצירה. אפשר להשתמש בחומרים וביצירה כדי לבטא דברים שלפעמים קשה לומר במילים, בקצב שמתאים לכם.',
       },
       {
         question: 'איך נראית פגישת ההיכרות?',
@@ -197,21 +197,20 @@ export const site = {
     ] as readonly FaqItem[],
   },
 
-  // ── Contact — איך יוצרים קשר? (יצירת קשר) ──────────────────────────────────
+  // ── Contact — יצירת קשר ───────────────────────────────────────────────────
   contact: {
     heading: 'יצירת קשר',
     lead: 'הצעד הראשון הוא לרוב הקשה ביותר — ואני כאן כדי להקל עליו.',
     invitation:
-      'אפשר לשלוח הודעת וואטסאפ או להתקשר, ואחזור אליכם בהקדם. הפנייה אינה מחייבת דבר.',
+      'אפשר לשלוח הודעת וואטסאפ, להתקשר או לכתוב לי במייל, ואחזור אליכם בהקדם. הפנייה אינה מחייבת דבר.',
 
-    // CONFIRM: phone from the alhasapa.co.il listing (spelled there רוית).
-    // Verify the number is correct and that WhatsApp is active on it.
+    // CONFIRM: phone from the alhasapa.co.il listing. Verify the number is
+    // correct and that WhatsApp is active on it.
     phoneDisplay: '052-829-5533',
     phoneE164: '+972528295533', // used for tel: and wa.me links
-    whatsappMessage: 'היי רווית, אשמח לשמוע פרטים על פגישת היכרות.',
+    whatsappMessage: 'היי רוית, אשמח לשמוע פרטים על פגישת היכרות.',
 
-    // Optional channels — fill in to show them (empty = hidden).
-    email: '', // CONFIRM: no public email found
+    email: 'Ravithillman@gmail.com',
     // Public clinic street address is unknown; set to a full address to enable
     // a working directions button. Leaving it empty shows the city only.
     mapsAddress: '', // CONFIRM: exact clinic address not public (city: חיפה)

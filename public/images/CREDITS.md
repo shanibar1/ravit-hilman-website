@@ -2,7 +2,7 @@
 
 | File                  | What it is                                        | Source / license |
 |-----------------------|---------------------------------------------------|------------------|
-| `hero-session.webp`   | Teen drawing in a session, adult seated across the table (hero) | Provided by the owner. Optimized WebP (1200×900, 4:3, metadata stripped). |
+| `hero-session.webp`   | Watercolor painting in a session, adult seated across the table (hero) | Provided by the owner. Optimized WebP (1200×900, 4:3, metadata stripped). |
 | `ravit-portrait.jpg`  | Portrait of Ravit Hilman (About section)          | Ravit's own photo — provided by the owner. Optimized (1000×1200, 5:6, metadata stripped). |
 | `og-image.jpg`        | Leaf shadows on a warm wall (social preview)      | Pexels, [Pexels License](https://www.pexels.com/license/) — https://www.pexels.com/photo/4207776/ |
 

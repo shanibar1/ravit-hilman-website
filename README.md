@@ -1,6 +1,6 @@
 # Ravit Hilman — therapist website
 
-A lightweight, static, single-page website for **רווית הילמן**, an emotional & art
+A lightweight, static, single-page website for **רוית הילמן**, an emotional & art
 therapist based in Haifa. Built with **Astro + TypeScript + CSS**. Hebrew, right-to-left.
 
 - Single page with anchored sections: פתיחה · נעים להכיר · למי הטיפול מתאים ·
@@ -87,7 +87,7 @@ Set `site` to the domain and `base` to `'/'` in `astro.config.mjs`, update
 ---
 
 ## Pending confirmation (before public release)
-- Name spelling — the site uses **רווית הילמן** (the source listing spelled it רוית).
+- Name spelling — the site uses **רוית הילמן** (the source listing spelled it רוית).
 - That the source listing (alhasapa.co.il) is genuinely hers.
 - Phone **052-829-5533** and whether WhatsApp is active on it.
 - Email / website / social links (none were found publicly).
